@@ -6,7 +6,13 @@ import numpy as np
 from PIL import Image
 import io
 
+from fastapi import FastAPI
+
 app = FastAPI()
+
+@app.api_route("/", methods=["GET", "HEAD"])
+def home():
+    return {"mensaje": "API para predecir neumonía con ResNet50"}
 
 # Cargar el modelo entrenado
 model = load_model("resnet50_v21.h5", compile=False)
