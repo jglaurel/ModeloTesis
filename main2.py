@@ -5,10 +5,19 @@ from keras.applications.resnet50 import preprocess_input
 import numpy as np
 from PIL import Image
 import io
-
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 
 app = FastAPI()
+
+# Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # En producción, especifica tu dominio de Vercel
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.api_route("/", methods=["GET", "HEAD"])
 def home():
