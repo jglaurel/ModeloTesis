@@ -6,8 +6,6 @@ from keras.utils import img_to_array
 import numpy as np
 from PIL import Image
 import io
-<<<<<<< HEAD
-<<<<<<< HEAD
 import tensorflow as tf
 import matplotlib.cm as cm
 import base64
@@ -16,11 +14,7 @@ import cv2
 app = FastAPI()
 
 # Cargar modelo
-=======
 from fastapi.middleware.cors import CORSMiddleware
-=======
-
->>>>>>> parent of 9a90e98 (Configuracion de CORS)
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -30,7 +24,6 @@ def home():
     return {"mensaje": "API para predecir neumonía con ResNet50"}
 
 # Cargar el modelo entrenado
->>>>>>> 9a90e98fea5a7973b34f5b865b72ae0b2af37940
 model = load_model("resnet50_v21.h5", compile=False)
 IMG_SIZE = (224, 224)
 class_labels = {0: "NORMAL", 1: "NEUMONIA"}
@@ -55,7 +48,6 @@ async def predecir(file: UploadFile = File(...)):
         "clase_predicha": class_labels[clase],
         "confianza": float(pred if clase == 1 else 1 - pred)
     }
-<<<<<<< HEAD
 
 #endpoint de gradcam
 def make_gradcam_heatmap(img_array, model, last_conv_layer_name):
@@ -110,5 +102,3 @@ async def gradcam(file: UploadFile = File(...)):
         "prediccion": float(predictions[0][0]),
         "imagen_gradcam": img_base64
     }
-=======
->>>>>>> 9a90e98fea5a7973b34f5b865b72ae0b2af37940
