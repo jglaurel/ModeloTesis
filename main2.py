@@ -1,3 +1,8 @@
+import os
+# Forzar CPU en Render (evita errores CUDA)
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+
 from fastapi import FastAPI, File, UploadFile
 from keras.models import load_model
 from tensorflow.keras.models import Model
