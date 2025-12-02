@@ -10,12 +10,15 @@ import tensorflow as tf
 import matplotlib.cm as cm
 import base64
 import cv2
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
 app = FastAPI()
 
 # Cargar modelo
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI
+model = load_model("resnet50_v21.h5", compile=False)
+IMG_SIZE = (224, 224)
+class_labels = {0: "NORMAL", 1: "NEUMONIA"}
 
 app = FastAPI()
 
