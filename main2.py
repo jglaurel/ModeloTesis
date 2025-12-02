@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image
 import io
 <<<<<<< HEAD
+<<<<<<< HEAD
 import tensorflow as tf
 import matplotlib.cm as cm
 import base64
@@ -17,18 +18,12 @@ app = FastAPI()
 # Cargar modelo
 =======
 from fastapi.middleware.cors import CORSMiddleware
+=======
+
+>>>>>>> parent of 9a90e98 (Configuracion de CORS)
 from fastapi import FastAPI
 
 app = FastAPI()
-
-# Configurar CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # En producción, especifica tu dominio de Vercel
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 @app.api_route("/", methods=["GET", "HEAD"])
 def home():
