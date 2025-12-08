@@ -2,7 +2,6 @@ import os
 # Forzar CPU en Render (evita errores CUDA)
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-
 from fastapi import FastAPI, File, UploadFile
 from keras.models import load_model
 from tensorflow.keras.models import Model
@@ -20,12 +19,19 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+# Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # En producción, especifica tu dominio de Vercel
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Cargar modelo
 model = load_model("resnet50_v21.h5", compile=False)
 IMG_SIZE = (224, 224)
 class_labels = {0: "NORMAL", 1: "NEUMONIA"}
-
-app = FastAPI()
 
 @app.api_route("/", methods=["GET", "HEAD"])
 def home():
